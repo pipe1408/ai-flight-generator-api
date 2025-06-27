@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 from generator import Generator
 from dotenv import load_dotenv
 from google import genai
@@ -11,4 +12,4 @@ generator = Generator(client)
 
 @app.get("/")
 async def root():
-    return generator.generate_flight()
+    return JSONResponse(content=generator.generate_flight(), media_type="application/json")
